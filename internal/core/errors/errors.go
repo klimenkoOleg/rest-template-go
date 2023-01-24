@@ -97,7 +97,7 @@ func Is(err error, target error) bool {
 	return errors.Is(err, target)
 }
 
-// As just wraps errors.As as we don't want to alias the errors package everywhere to use it.
+// As just wraps errors. As we don't want to alias the errors package everywhere to use it.
 func As(err error, target any) bool {
 	return errors.As(err, target)
 }

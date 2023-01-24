@@ -49,3 +49,35 @@ Some of the integration tests use docker to spin up dependencies on demand (ie a
 
 1. From root of the repo
 2. Run `go test ./...`
+### Dependencies list
+
+There are libraries used as a dependency for the template project.
+Let me remind, to install a dependency, one need to execute:
+`go get -u go.uber.org/zap`
+
+1. `go.uber.org/zap` - blazing fast, structured, leveled logging in Go.
+2. `github.com/caarlos0/env/v6` - a simple and zero-dependencies library to parse environment variables into structs.
+3. `github.com/go-playground/validator/v10` - Package validator implements value validations for structs and individual fields based on tags.
+Usage example:
+```
+// User contains user information
+type User struct {
+FirstName      string     `validate:"required"`
+LastName       string     `validate:"required"`
+Age            uint8      `validate:"gte=0,lte=130"`
+Email          string     `validate:"required,email"`
+FavouriteColor string     `validate:"iscolor"`                // alias for 'hexcolor|rgb|rgba|hsl|hsla'
+Addresses      []*Address `validate:"required,dive,required"` // a person can have a home and cottage...
+}
+```
+4. `gopkg.in/yaml.v2` - YAML support for the Go language.
+5. `github.com/golang-migrate/migrate/v4` - Database migrations written in Go. Use as CLI or import as library.
+6. `github.com/jmoiron/sqlx` - sqlx is a library which provides a set of extensions on go's standard database/sql library. The sqlx versions of sql.DB, sql.TX, sql.Stmt, et al. all leave the underlying interfaces untouched, so that their interfaces are a superset on the standard ones. This makes it relatively painless to integrate existing codebases using database/sql with sqlx.
+7. `github.com/lib/pq` - A pure Go postgres driver for Go's database/sql package.
+8. `github.com/gorilla/mux`
+9. `go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp`
+10. `go.opentelemetry.io/otel/exporters/stdout/stdouttrace`
+11. `github.com/golang/mock/gomock`
+12. `github.com/stretchr/testify/assert`
+13. `github.com/AlekSi/pointer`
+14. 
